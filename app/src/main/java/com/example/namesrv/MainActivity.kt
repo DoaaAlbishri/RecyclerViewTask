@@ -13,17 +13,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val names = arrayListOf<String>()
+        val names = arrayListOf<String>("Doaa","Ali")
         val editText = findViewById<EditText>(R.id.editText)
         val button = findViewById<Button>(R.id.button)
+        val myRv = findViewById<RecyclerView>(R.id.recyclerView)
+        myRv.adapter = RecyclerViewAdapter(names)
+        myRv.layoutManager = LinearLayoutManager(this)
+
         button.setOnClickListener {
                 names.add(editText.text.toString())
                 editText.text.clear()
-                val myRv = findViewById<RecyclerView>(R.id.recyclerView)
-                myRv.adapter = RecyclerViewAdapter(names)
-                myRv.layoutManager = LinearLayoutManager(this)
-
-                 myRv.adapter?.notifyDataSetChanged()
+                myRv.adapter?.notifyDataSetChanged()
 
         }
     }
